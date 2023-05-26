@@ -1,20 +1,19 @@
 name: Update Environment
 
-on: 
+on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
     paths:
       - 'environment.yml'
       - 'Dockerfile'
-      
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag exampleenv:$(date +%s)
+      run: |
+        docker build . --file Dockerfile --tag exampleenv:$(date +%s)
+
