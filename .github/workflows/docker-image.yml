@@ -15,5 +15,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag exampleenv:${{ github.run_number }}
+        IMAGE_TAG=exampleenv:$(date +%s)
+        docker build . --file Dockerfile --tag $IMAGE_TAG
+        echo "Image Tag: $IMAGE_TAG"
 
